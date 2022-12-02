@@ -8,6 +8,7 @@ public class FireBulletOnActivate : MonoBehaviour
     public GameObject bullet;
     public Transform spawnPoint;
     public float fireSpeed = 20;
+    public AudioSource shotSound;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,6 +26,7 @@ public class FireBulletOnActivate : MonoBehaviour
         GameObject spawnedBullet = Instantiate(bullet);
         spawnedBullet.transform.position = spawnPoint.position;
         spawnedBullet.GetComponent<Rigidbody>().velocity = spawnPoint.forward * fireSpeed;
+        shotSound.Play();
         Destroy(spawnedBullet,5);
     }
 }
