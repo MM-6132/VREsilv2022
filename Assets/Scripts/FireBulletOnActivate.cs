@@ -9,6 +9,7 @@ public class FireBulletOnActivate : MonoBehaviour
     public Transform spawnPoint;
     public float fireSpeed = 20;
     public AudioSource shotSound;
+    public ParticleSystem flash;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,8 +25,10 @@ public class FireBulletOnActivate : MonoBehaviour
     public void FireBullet(ActivateEventArgs arg)
     {
         GameObject spawnedBullet = Instantiate(bullet);
+        
         spawnedBullet.transform.position = spawnPoint.position;
         spawnedBullet.GetComponent<Rigidbody>().velocity = spawnPoint.forward * fireSpeed;
+        flash.Play();
         shotSound.Play();
         Destroy(spawnedBullet,5);
     }
