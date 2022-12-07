@@ -127,5 +127,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 909d57d164976fa489e53c4ec7b7f598, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collisionExplosion: {fileID: 2252838912408372734, guid: 270e217048b3f20408e2bdba84744aa5,
+  robotCollisionExplosion: {fileID: 2252838912408372734, guid: 270e217048b3f20408e2bdba84744aa5,
+    type: 3}
+  smCollisionExplosion: {fileID: 1804206099813350, guid: a0c60d36199718b41a96f171b38850cd,
     type: 3}

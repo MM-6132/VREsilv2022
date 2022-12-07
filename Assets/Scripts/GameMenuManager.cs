@@ -35,7 +35,8 @@ public class GameMenuManager : MonoBehaviour
     }
     public void SliderChanger(float value)
     {
-        music.volume = value;
+        music.volume = value/10;
+        Debug.Log(music.volume);
         audioSource.volume = value;
     }
 }
