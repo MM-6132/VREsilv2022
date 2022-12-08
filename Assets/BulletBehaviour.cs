@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class BulletBehaviour : MonoBehaviour
 {
 	public GameObject robotCollisionExplosion;
@@ -17,6 +18,7 @@ public class BulletBehaviour : MonoBehaviour
             }
            if (collision.gameObject.tag == "Robot"){
                 GameObject explosion = (GameObject)Instantiate(robotCollisionExplosion,transform.position, transform.rotation);
+                collision.gameObject.GetComponent<EnemyAI>().TakeDamage(20);
                 Destroy(explosion, 2f);
                 Destroy(gameObject);
            }

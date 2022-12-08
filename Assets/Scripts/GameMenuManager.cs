@@ -9,9 +9,6 @@ public class GameMenuManager : MonoBehaviour
     public InputActionProperty showButton;
     public Transform head;
     public float spawnDistance = 2;
-    public AudioSource music;
-    public AudioSource audioSource;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -32,11 +29,5 @@ public class GameMenuManager : MonoBehaviour
          menu.transform.LookAt(new Vector3(head.position.x, menu.transform.position.y, head.position.z));
          menu.transform.forward *= -1;
         }
-    }
-    public void SliderChanger(float value)
-    {
-        music.volume = value/10;
-        Debug.Log(music.volume);
-        audioSource.volume = value;
     }
 }

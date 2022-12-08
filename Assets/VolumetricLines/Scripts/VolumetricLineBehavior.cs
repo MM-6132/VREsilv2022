@@ -37,7 +37,6 @@ namespace VolumetricLines
 		/// </summary>
 		[SerializeField]
 		public Material m_templateMaterial;
-
 		/// <summary>
 		/// Set to false in order to change the material's properties as specified in this script.
 		/// Set to true in order to *initially* leave the material's properties as they are in the template material.
