@@ -32,7 +32,6 @@ public class EnemyAI : MonoBehaviour
     public bool playerInSightRange, playerInAttackRange;
 
     //Special
-    public Material green, red, yellow;
     public GameObject projectile;
 
     private void Awake()
@@ -43,7 +42,7 @@ public class EnemyAI : MonoBehaviour
     }
     private void Update()
     {
-        if (!isDead)
+        if (!isDead && health > 0)
         {
             //Check if Player in sightrange
             playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
@@ -79,8 +78,6 @@ public class EnemyAI : MonoBehaviour
         //Walkpoint reached
         if (distanceToWalkPoint.magnitude < 1f)
             walkPointSet = false;
-
-        GetComponent<MeshRenderer>().material = green;
     }
     private void SearchWalkPoint()
     {
@@ -98,8 +95,6 @@ public class EnemyAI : MonoBehaviour
         animator.SetBool("Run_guard_AR", true);
         animator.SetBool("Shoot_SingleShot_AR", false);
         agent.SetDestination(player.position);
-
-        GetComponent<MeshRenderer>().material = yellow;
     }
     private void AttackPlayer()
     {
@@ -123,7 +118,6 @@ public class EnemyAI : MonoBehaviour
             Invoke("ResetAttack", timeBetweenAttacks);
         }
 
-        GetComponent<MeshRenderer>().material = red;
     }
     private void ResetAttack()
     {
@@ -138,14 +132,8 @@ public class EnemyAI : MonoBehaviour
         if (health < 0){
             isDead = true;
             animator.SetTrigger("Die");
+            gameObject.GetComponent<Collider>().enabled = false;
             Destroy(gameObject, 4f);
         }
-    }
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, attackRange);
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, sightRange);
     }
 }
