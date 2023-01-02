@@ -50,7 +50,8 @@ public class Lightsaber : MonoBehaviour
         if (collision.gameObject.tag == "Robot" && activate){
             source.Stop();
             source.PlayOneShot(saberHit);
-                            GameObject explosion = (GameObject)Instantiate(robotCollisionExplosion,transform.position, transform.rotation);
+            GameObject explosion = (GameObject)Instantiate(robotCollisionExplosion, transform.position, transform.rotation);
+            Destroy(explosion, 1f);
             collision.gameObject.GetComponent<EnemyAI>().TakeDamage(50);
         }
     }
