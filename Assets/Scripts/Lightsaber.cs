@@ -13,7 +13,9 @@ public class Lightsaber : MonoBehaviour
     public AudioClip saberOff;
     public AudioClip saberMovingSound;
     public AudioClip saberHum;
+    public AudioClip saberHit;
     private ControllerVelocity controllerVelocity;
+    public GameObject robotCollisionExplosion;
     // Start is called before the first frame update
     void Start()
     {
@@ -43,15 +45,23 @@ public class Lightsaber : MonoBehaviour
         }else if(activate == false)
             laser.SetActive(false);
     }
-
+    void OnCollisionEnter(Collision collision) {
+        Debug.Log(collision.gameObject.tag);
+        if (collision.gameObject.tag == "Robot" && activate){
+            source.Stop();
+            source.PlayOneShot(saberHit);
+                            GameObject explosion = (GameObject)Instantiate(robotCollisionExplosion,transform.position, transform.rotation);
+            collision.gameObject.GetComponent<EnemyAI>().TakeDamage(50);
+        }
+    }
     public void saber(ActivateEventArgs arg){
         controllerVelocity = arg.interactor.GetComponent<ControllerVelocity>();
         Vector3 velocity = controllerVelocity ? controllerVelocity.Velocity : Vector3.zero;
-        Debug.Log(velocity);
         activate = !activate;
         if(activate){
             source.PlayOneShot(saberOn);
             laser.transform.localScale = new Vector3(fullSize.x, 0, fullSize.z);
+            gameObject.GetComponent<Rigidbody>().isKinematic = false;
         }
         else{
             source.Stop();

@@ -769,7 +769,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
-  damage: 30
 --- !u!1 &2298150751527732104
 GameObject:
   m_ObjectHideFlags: 0
