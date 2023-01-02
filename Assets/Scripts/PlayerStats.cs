@@ -1,20 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerStats : MonoBehaviour
 {
     public float health = 100;
-    public float damage = 30;
-    // Start is called before the first frame update
-    void Start()
+    public void TakeDamage(int damage)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        health -= damage;
+        Debug.Log("oof");
+        if (health <= 0){
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
     }
 }
